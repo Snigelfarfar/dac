@@ -140,12 +140,11 @@ class DacFunc():
             lightswitch.switch(bulb_id, 'turn_on', 1) 
             bulb_state = lightswitch.get_states(bulb_id) 
             log.debug(bulb_state)
-            print("checked")
+            
         else:
             log.debug("Bulb switched OFF")
             self.btnBulbStatus.setIcon(QtGui.QIcon("img/icons/svg/bulboff.svg"))
-            # TURN ON LIGHTS
-            print("not checked")
+            # TURN OFF LIGHTS
             lightswitch.switch(bulb_id, 'turn_off', 1) 
             bulb_state = lightswitch.get_states(bulb_id) 
             log.debug(bulb_state)
@@ -290,8 +289,15 @@ class DacFunc():
     def dacTeamFlash(self, activate):
         if activate:
             log.debug("TEAMFLASH!!")
+            lightswitch.switch(bulb_id, 'turn_on', 1) 
+            #bulb_state = lightswitch.get_states(bulb_id) 
+            #log.debug(bulb_state)
+            log.debug("TEAMFLASH END!!")
         else:
             log.debug("STOP FLASHING ME!")
+            lightswitch.switch(bulb_id, 'turn_off', 1) 
+            bulb_state = lightswitch.get_states(bulb_id) 
+            log.debug(bulb_state)
 
     def dacInfo(self, msg="ping"):
         self.txtLogInput.clear()
