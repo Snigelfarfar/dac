@@ -101,7 +101,7 @@ class Ui_DennysAlarmClock(QWidget):
         self.lblAlarmTime.move(15,60)
 
         #Bulb
-        self.lblBulbTime = QtGui.QLabel("07:00", self.stack0)
+        self.lblBulbTime = QtGui.QLabel(str(self.settings['time']['bulb']), self.stack0)
         self.lblBulbTime.move(115,60)
 
         #Coffee
@@ -141,8 +141,8 @@ class Ui_DennysAlarmClock(QWidget):
         self.iconCoffeeCup = QtGui.QIcon(os.path.join(ICON_PATH,"cup.svg"))
         
         #BulbStatus
-        #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"bulboff.svg"))
-        #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"bulb.svg"))
+        self.iconBulbStatus_off =  QtGui.QIcon(os.path.join(ICON_PATH,"bulboff.svg"))
+        self.iconBulbStatus_on =  QtGui.QIcon(os.path.join(ICON_PATH,"bulb.svg"))
         
         #Calendar icons
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"calendarday_filled.svg"))
