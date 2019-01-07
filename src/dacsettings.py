@@ -2,7 +2,7 @@ def dacDefaultSettings():
     default = {
         "time": {
             "wakeup": "07:00",
-            "bulb": "23:27",
+            "bulb": "23:40",
             "coffee": "07:05",
         },
         "timer": {

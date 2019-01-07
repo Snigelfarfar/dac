@@ -50,42 +50,6 @@ class DacFunc():
         time_to_turn_off_bulb = "23:42" 
 
         time_to_str = str("%s" % text)
-
-        #log.debug("triggeralarm: {}, time_to_str: {}, trigger: {}, status: {}".format(triggeralarm, time_to_str, self.settings['trigger']['wakeup'], self.settings['status']['wakeup']))
-
-       # if self.settings['status']['wakeup'] == 'ON':
-       #     if time_to_str in current_alarm:
-       #         #This loop will continnue for a minute, absolutely disgusted with myself.
-       #         #log.debug("TIME IS NIGH!")
-       #         #self.PushButton2.setVisible(False)
-       #         self.dacSoundTheAlarm()
-
-       #     #Not really ideal to reset the alarm trigger every minute.....
-       #     #Maybe put this reset in snooze or turn off alarm func
-       #     if time_to_str > current_alarm and self.settings['trigger']['wakeup'] == 'OFF':
-       #         self.settings['trigger']['wakeup'] = 'ON'
-       #         log.debug("Alarm time has passed, resetting alarm trigger")
-       #     #else:
-       #         #log.debug("alarmtime has NOT passed yet")
-        
-
-        #FIXME: This entire part is just broken af
-        #if self.settings['status']['bulb'] == 'ON':
-
-        #    if time_to_str in current_teamflash:
-        #        #log.debug("!")
-        #        self.dacTeamFlash(True)
-        #    
-        #    if time_to_str in time_to_turn_off_bulb:
-        #        #log.info(".")
-        #        self.dacTeamFlash(False)
-
-        #    #log.debug(time_to_turn_off_bulb)
-
-        #    if time_to_str > time_to_turn_off_bulb and self.settings['trigger']['bulb'] == 'OFF':
-        #        self.settings['trigger']['bulb'] = 'ON'
-        #        log.debug("Enabling bulb trigger, time_to_str: {} time_to_turn_off_bulb: {}".format(time_to_str,time_to_turn_off_bulb))
-
         
         #print("text {}".format(text))
         #self.PushButton2.setVisible(True)
@@ -287,12 +251,12 @@ class DacFunc():
     
     
     def dacTeamFlash(self, activate):
+        bulb_id = self.settings['api']['homeassistant']['bulb']['id']
         if activate:
             log.debug("TEAMFLASH!!")
             lightswitch.switch(bulb_id, 'turn_on', 1) 
-            #bulb_state = lightswitch.get_states(bulb_id) 
-            #log.debug(bulb_state)
-            log.debug("TEAMFLASH END!!")
+            bulb_state = lightswitch.get_states(bulb_id) 
+            log.debug(bulb_state)
         else:
             log.debug("STOP FLASHING ME!")
             lightswitch.switch(bulb_id, 'turn_off', 1) 
