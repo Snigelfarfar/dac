@@ -89,7 +89,7 @@ class DacFunc():
                 log.debug("status.bulb = on, and time is now. Prepare for teamflash.")
                 self.dacTeamFlash(True)
                 try:
-                    QTimer.singleShot(180000, lambda: self.dacTeamFlash(False))
+                    QTimer.singleShot(1800000, lambda: self.dacTeamFlash(False))
                 except Exception as e:
                     log.debug(e)
 
@@ -99,7 +99,7 @@ class DacFunc():
         bulb_id = self.settings['api']['homeassistant']['bulb']['id']
         if checked:
             log.debug("Bulb switched ON")
-            self.btnBulbStatus.setIcon(QtGui.QIcon("img/icons/svg/bulb.svg"))
+            self.btnBulbStatus.setIcon(self.iconBulbStatus_on)
             # TURN ON LIGHTS
             lightswitch.switch(bulb_id, 'turn_on', 1) 
             bulb_state = lightswitch.get_states(bulb_id) 
@@ -107,7 +107,7 @@ class DacFunc():
             
         else:
             log.debug("Bulb switched OFF")
-            self.btnBulbStatus.setIcon(QtGui.QIcon("img/icons/svg/bulboff.svg"))
+            self.btnBulbStatus.setIcon(self.iconBulbStatus_off)
             # TURN OFF LIGHTS
             lightswitch.switch(bulb_id, 'turn_off', 1) 
             bulb_state = lightswitch.get_states(bulb_id) 
@@ -115,14 +115,14 @@ class DacFunc():
 
     def dacToggleCoffeeCupStatus(self, checked):
         if checked:
-            self.btnCoffeeCupStatus.setIcon(QtGui.QIcon("img/icons/svg/cup_hot.svg"))
+            self.btnCoffeeCupStatus.setIcon(self.iconCoffeeCup_hot)
             log.debug("checked")
             try:
                 self.dacPlaySoundFile("kaka", True)
             except Exception as e:
                 log.error("unable to call self.dacPlaySoundFile() due to reason: {}".format(e))
         else:
-            self.btnCoffeeCupStatus.setIcon(QtGui.QIcon("img/icons/svg/cup.svg"))
+            self.btnCoffeeCupStatus.setIcon(self.iconCoffeeCup)
             try:
                 self.dacPlaySoundFile("kaka", False)
             except Exception as e:

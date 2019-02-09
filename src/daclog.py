@@ -26,9 +26,17 @@ LOGGING = {
             'facility': "local6",
             'formatter': 'verbose',
             },
+        #Unable to get this to work.
+        #TODO: learn python
+        # 'dacui-logger': {
+        #     'class': 'src.dacclasses.DacHandler',
+        #     #'testwidget': 'plakeket',
+        #     'formatter': 'basic', 
+        #     }
         },
     'loggers': {
         'dac-logger': {
+            #'handlers': ['sys-logger6','stdout', 'dacui-logger'],
             'handlers': ['sys-logger6','stdout'],
             'level': logging.DEBUG,
             'propagate': True,

@@ -8,6 +8,7 @@ from src.dacui import Ui_DennysAlarmClock
 from src.daclog import DacLog
 from src.dacsettings import dacDefaultSettings
 from src.dacfunc import DacFunc
+from src.dacclasses import DacHandler, DacToolbarButton
 import logging
 
 
@@ -15,11 +16,15 @@ DacLog()
 log = logging.getLogger("dac-logger")
 log.info("Initializing logging and starting Main application.")
 
-class DennysAlarmClock(QMainWindow, Ui_DennysAlarmClock, DacFunc):
+class DennysAlarmClock(QMainWindow, Ui_DennysAlarmClock, DacFunc, DacHandler):
     def __init__(self, parent=None):
         super(DennysAlarmClock, self).__init__(parent)
         self.settings = dacDefaultSettings()
         self.setupUi(self)
+
+        #DacLog()
+        #log = logging.getLogger("dac-logger")
+        #log.info("Initializing logging and starting Main application.")
 
        # self.PushButton2.clicked.connect(self.dacCloseApplication)
        # self.PushButton2.clicked.connect(self.OpenWindow2)

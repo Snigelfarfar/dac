@@ -8,6 +8,8 @@ import logging
 import random
 from pygame import mixer
 
+from dacclasses import DacToolbarButton
+
 log = logging.getLogger("dac-logger")
 
 class Ui_DennysAlarmClock(QWidget):
@@ -137,7 +139,7 @@ class Ui_DennysAlarmClock(QWidget):
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"beans_filled.svg"))
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"beans.svg"))
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"coffee_hot.svg"))
-        #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"cup_hot.svg"))
+        self.iconCoffeeCup_hot =  QtGui.QIcon(os.path.join(ICON_PATH,"cup_hot.svg"))
         self.iconCoffeeCup = QtGui.QIcon(os.path.join(ICON_PATH,"cup.svg"))
         
         #BulbStatus
@@ -195,7 +197,7 @@ class Ui_DennysAlarmClock(QWidget):
 
         #Settings icons
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"settings_cog_detailed_filled.svg
-        #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"settings_cog_detailed.svg
+        self.iconSettings =  QtGui.QIcon(os.path.join(ICON_PATH,'settings_cog_detailed.svg'))
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"settings_cog_filled.svg
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"settings_cog.svg
         #self.icon =  QtGui.QIcon(os.path.join(ICON_PATH,"youtube_filled.svg
@@ -205,6 +207,11 @@ class Ui_DennysAlarmClock(QWidget):
         # BUTTONS #
         ###########
         log.debug("setting up BUTTONS")
+
+        self.testbutton = QPushButton(self.stack0)
+        self.testbutton.setGeometry(340,30,60,60)
+        self.testbutton.setIconSize(QSize(60,60))
+
 
         #Alarm status button
         self.btnAlarmStatus = QPushButton(self.stack0)
@@ -225,7 +232,8 @@ class Ui_DennysAlarmClock(QWidget):
         #Bulb status button
         self.btnBulbStatus = QPushButton(self.stack0)
         self.btnBulbStatus.setFlat(True)
-        self.btnBulbStatus.setIcon(QtGui.QIcon("img/icons/svg/bulboff.svg"))
+        #TODO: at initial startup, check status of bulb and set the appropriate icon.
+        self.btnBulbStatus.setIcon(self.iconBulbStatus_off)
         self.btnBulbStatus.setGeometry(110,10,50,50)
         self.btnBulbStatus.setIconSize(QSize(50,50))
         self.btnBulbStatus.setStyleSheet("QPushButton{border: 0px solid;}")
@@ -236,7 +244,7 @@ class Ui_DennysAlarmClock(QWidget):
         #CoffeeCup status button
         self.btnCoffeeCupStatus = QPushButton(self.stack0)
         self.btnCoffeeCupStatus.setFlat(True)
-        self.btnCoffeeCupStatus.setIcon(QtGui.QIcon("img/icons/svg/cup.svg"))
+        self.btnCoffeeCupStatus.setIcon(self.iconCoffeeCup)
         self.btnCoffeeCupStatus.setGeometry(210,10,50,50)
         self.btnCoffeeCupStatus.setIconSize(QSize(50,50))
         self.btnCoffeeCupStatus.setStyleSheet("QPushButton{border: 0px solid;}")
@@ -246,7 +254,7 @@ class Ui_DennysAlarmClock(QWidget):
         #Info button
         self.btnInfo = QPushButton(self.stack0)
         self.btnInfo.setFlat(True)
-        self.btnInfo.setIcon(QtGui.QIcon("img/icons/svg/settings_cog_detailed.svg"))
+        self.btnInfo.setIcon(self.iconSettings)
         self.btnInfo.setGeometry(540,10,50,50)
         self.btnInfo.setIconSize(QSize(50,50))
         self.btnInfo.setStyleSheet("QPushButton{border: 0px solid;}")
@@ -257,7 +265,7 @@ class Ui_DennysAlarmClock(QWidget):
         #Settings status button
         self.btnSettings = QPushButton(self.stack0)
         self.btnSettings.setFlat(True)
-        self.btnSettings.setIcon(QtGui.QIcon("img/icons/svg/settings_cog_detailed.svg"))
+        self.btnSettings.setIcon(self.iconSettings)
         self.btnSettings.setGeometry(740,10,50,50)
         self.btnSettings.setIconSize(QSize(50,50))
         self.btnSettings.setStyleSheet("QPushButton{border: 0px solid;}")
